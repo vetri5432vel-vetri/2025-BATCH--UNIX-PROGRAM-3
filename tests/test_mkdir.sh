@@ -148,13 +148,16 @@ fi
 
 
 # --------------------------------------
+# --------------------------------------
 # Test 9: Check mkdir -p execution
 # --------------------------------------
 
-if grep -Fxq "-p /home/user/my_folder/sub_folder" "$LOG_FILE" 2>/dev/null; then
+if grep -Fq -- "-p /home/user/my_folder/sub_folder" "$LOG_FILE"; then
     pass_test "mkdir -p parent directory was executed"
 else
     fail_test "mkdir -p parent directory was not executed"
+    echo "DEBUG: mkdir command log:"
+    cat "$LOG_FILE" 2>/dev/null
 fi
 
 
